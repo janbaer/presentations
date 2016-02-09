@@ -1,2 +1,5 @@
 node_modules/
-bower/
+bower_components/
+
+css/reveal.min.css
+js/reveal.min.js
