@@ -45,16 +45,57 @@
           </p>
         </section>
 
-        <section data-markdown>
-          <script type="text/template">
-              ## Tmux - A terminal multiplexer
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+                ## Tmux - A terminal multiplexer
 
-              - Multiple panes in one window
-              - Multiple windows in one session
-              - Multiple sessions
-              - Configurable via **.tmux.conf**
-              - Mousefree usage (but supports mouse)
-          </script>
+                - Multiple panes in one window
+                - Multiple windows in one session
+                - Multiple sessions
+                - Configurable via **.tmux.conf**
+                - Mousefree usage (but supports mouse)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## tmux - Sessions
+
+              - list-sessions
+              - new -s <session-name>
+              - attach -t <session-name>
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## tmux - Windows
+
+              - List (prefix + w)
+              - New (prefix + c)
+              - Switch (prefix + 1-9)
+              - Rename (prefix + ,)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## tmux - Panes
+
+              - Split (prefix + |-)
+              - Resize (prefix + c+up/down)
+              - Switch (prefix + q 1-9)
+              - Rotate (prefix + c-o)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## tmux - More
+
+              - Keys (prefix + ?)
+              - Buffers (prefix + =)
+              - Remote (connect via ssh and then **tmux attach**)
+              - ...
+            </script>
+          </section>
       </section>
       </div>
     </div>
