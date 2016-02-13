@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -97,7 +96,114 @@
               - ...
             </script>
           </section>
-      </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Vi IMproved
+
+              - written by Bram Moolenaar and first released publicly in 1991
+              - Developed as clone of VI for the AmigaOS
+              - Very good configurable via .vimrc and extendeble with plugins
+              - In comparison with SublimeText VIM has a
+              - Four different modes: Normal, Insert, Visual, Command
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              # The Normal mode
+
+              - Is the default and most used mode
+              - Programmers mostly reading code and navigating through the code
+              - Quick navigation is a strenght of VIM
+                - gg G $ 0 ^
+                - c-f c-b
+                - HJKL
+                - wWbBeE
+                - {n}tT/fF{char} - nth forward/backward till/to
+                - EasyNavigation ```<leader<leader>w```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Lets go into the Insert mode
+
+              - iIaAoOsS
+              - c cw
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Lets delete the text
+              - x {n}x
+              - dd {n}dd
+              - dw
+              - {n}r
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## The visual mode
+
+              - v enters the visual mode
+              - c-v enters the visual block mode
+                - Go into insert mode with cIA
+                - Delete what you selected with d or x
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Combine moves and actions
+
+              - dt{char}
+              - vt{char}
+              - ct{char}
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Go to
+
+              - {n}X
+              - gi
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## More VIM
+
+              - Repeat the last command
+              - Registers (Shared with yank and Macros)
+              - Marks (auto/manual)
+              - Macros
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## The command mode
+
+              - Internal commands
+              - External commands: !mkdir
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Plugins
+
+              - NERDTree
+              - CtrlP
+              - Fugitive (Gbl, Gdiff)
+              - SurroundWith
+              - CompleteMe
+              - EasyMotion
+              - Powerline
+              - MultipleCursors (I missed it from SublimeText)
+              - Tig (it's not a plugini but I use it within Vim)
+            </script>
+          </section>
+
+       </section>
       </div>
     </div>
 
