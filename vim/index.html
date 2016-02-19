@@ -61,8 +61,8 @@
               ## tmux - Sessions
 
               - list-sessions
-              - new -s <session-name>
-              - attach -t <session-name>
+              - ```new -s <session-name>```
+              - ```attach -t <session-name>```
               - rename (prefix + $)
             </script>
           </section>
@@ -105,7 +105,7 @@
               - written by Bram Moolenaar and first released publicly in 1991
               - Developed as clone of VI for the AmigaOS
               - Very good configurable via .vimrc and extendeble with plugins
-              - In comparison with SublimeText VIM has a
+              - But the first steps are really hard, the learning curve, is for some, more like a learning wall.
               - Four different modes: Normal, Insert, Visual, Command
             </script>
           </section>
@@ -118,8 +118,8 @@
               - Quick navigation is a strenght of VIM
                 - gg G $ 0 ^
                 - c-f c-b
-                - HJKL
-                - wWbBeE
+                - hjkl
+                - w b e
                 - {n}tT/fF{char} - nth forward/backward till/to
                 - EasyNavigation ```<leader<leader>w```
             </script>
@@ -129,7 +129,8 @@
               ## Lets go into the Insert mode
 
               - iIaAoOsS
-              - c cw
+              - cw
+              - c$ or c0 or c^
             </script>
           </section>
           <section data-markdown>
@@ -145,8 +146,8 @@
             <script type="text/template">
               ## The visual mode
 
-              - v enters the visual mode
-              - c-v enters the visual block mode
+              - v - enters the visual mode
+              - c-v - enters the visual block mode
                 - Go into insert mode with cIA
                 - Delete what you selected with d or x
             </script>
@@ -155,17 +156,20 @@
             <script type="text/template">
               ## Combine moves and actions
 
-              - dt{char}
-              - vt{char}
-              - ct{char}
+              - dt{char} - delete to
+              - vt{char} - select to
+              - ct{char} - change to
             </script>
           </section>
           <section data-markdown>
             <script type="text/template">
-              ## Go to
+              ## Lets jump or go to
 
-              - {n}X
-              - gi
+              - {n}G - goto line
+              - gi - goto last insert
+              - gf - goto file
+              - % - goto corresponding brace or tag
+
             </script>
           </section>
           <section data-markdown>
@@ -184,9 +188,26 @@
 
               - Internal commands
               - External commands: !mkdir
+              - Move or copy text
+                - 5,7m7 Move from lines 5,6,7 to 7
+                - 5t10 Copy line 5 to 10
+                - 5t. Copy line 5 to current line
+                - .m5 Move current line to line 5
+              - Search
+              - Search&Replace
+                - 0,$s/Foo/Bar/gc
             </script>
           </section>
 
+          <section data-markdown>
+            <script type="text/template">
+              ## Customize and extend
+
+              - Change current shortcuts
+              - Create new shortcuts
+              - Show all keymaps (nmap, imap, vmap)
+            </script>
+          </section>
           <section data-markdown>
             <script type="text/template">
               ## Plugins
