@@ -59,7 +59,8 @@
     selector: 'my-app',
     template: '<div>Hello my name is {{name}}. <button (click)="sayMyName()">Say my name</button></div>',
     directives: [],
-    pipes: []
+    pipes: [],
+    providers: []
   })
   export class MyApp {
     constructor() {
@@ -70,7 +71,7 @@
     }
   }
 
-  bootstrap(MyApp);
+  bootstrap(MyApp, [HTTP_Providers]);
   ```
             </script>
           </section>
@@ -84,6 +85,7 @@
               - @Input() and @Output() for communicating with other components
               - @Output() are events ```(EventEmitter<Type>)```
               - @ViewChild() make it possible to call methods from child-components
+              - @Diretive will be used for attributes
             </script>
           </section>
         </section>
@@ -91,12 +93,47 @@
           <script type="text/template">
             ## Angular 2 Performance
 
-            - Angular 2 data bindings only go one xdway
+            - Angular 2 data bindings only go one way (From top to bottom in the tree)
             - Change detection scales in Angular 2
             - Provides several different change detection strategies
               - Default, DefaultObserver, Checked, CheckedOnce, CheckedAlways, Detaches, OnPush
             - For more infos see [Angular 2 Change Detection Explained](http://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html)
           </script>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Routing
+
+              - @RouteConfig from ROUTE_PROVIDERS
+              - @RouteConfig accepts an array of route definitions
+              - Name must be Pascalcase
+              - [routerLink] navigates to a route
+              - ```<router-outlet>``` is where the Component template will appear
+              - Childroutes are possible ('/...' indicates a childroute) - Makes Lazyloading possible
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Example
+
+```
+@RouteConfig([
+  new Route({path: '/', component: HomeCmp, name: 'Home', useAsDefault=true}),
+  new Route({path: '/races', component: RacesCmp, name: 'Races'}),
+])
+@Componentn({
+})
+export class MyApp {}
+
+<div>
+  <a href="" [routerLink]="/Home"> </a>
+  <router-outlet> </router-outlet>
+</div>
+```
+            </script>
+          </section>
+
         </section>
         <section>
           <section data-markdown>
@@ -113,9 +150,20 @@
           </section>
           <section data-markdown>
             <script type="text/template">
+              # Templating
+
+              - Interpolation like Angular 1.0 {{ user.name | uppercase }}
+              - OneWayBinding [property]="user.name"
+              - TwoWayBinding [(ngModel)]="user.name"
+              - Events (click)="clickme()"
+              - No ng-click, ng-src, ng-hide, ng-show...
+              - Special keys (keydown.space)="onSpacePress()"
+              - Automatic variables for templates #variable
+              - *ngIf is still available
+              - *ngFor is the replacement for ngRepeat
+              - ngStyle, ngClass
             </script>
           </section>
-
         </section>
         <section>
           <section data-markdown>
@@ -124,7 +172,7 @@
 
               - Services must be decorated with **@Injectable** and also registered in the Bootstrapper
               - Inject a service for TypeScript just with type and for ES6 with **@Inject**
-              - With **provide** you can use diferrent implementations of a service
+              - With **provide** you can use different implementations of a service
               - Every component can declare it owns providers
             </script>
           </section>
