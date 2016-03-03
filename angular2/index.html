@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -44,6 +43,194 @@
             <small>Created by <a href="http://www.janbaer.de">Jan Baer</a> / <a href="http://twitter.com/reabnaj">@reabnaj</a></small>
           </p>
         </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Angular 2 - The basic concepts
+
+              * In Angular 2, Components are the main way we build
+              and specify elements and logic on the page.
+
+  ```
+  import {bootstrap} from 'angular2/platform/browser';
+  import {Component} from 'angular2/angular2';
+
+  @Component({
+    selector: 'my-app',
+    template: '<div>Hello my name is {{name}}. <button (click)="sayMyName()">Say my name</button></div>',
+    directives: [],
+    pipes: []
+  })
+  export class MyApp {
+    constructor() {
+      this.name = 'Max'
+    }
+    sayMyName() {
+      console.log('My name is', this.name)
+    }
+  }
+
+  bootstrap(MyApp);
+  ```
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## More about components
+
+              - Lifecycle Hooks
+                - ngOnInit will be called once when class implements OnInit
+                - ngOnChanges, ngAfterViewInit, ngOnDestroy
+              - @Input() and @Output() for communicating with other components
+              - @Output() are events ```(EventEmitter<Type>)```
+              - @ViewChild() make it possible to call methods from child-components
+            </script>
+          </section>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Angular 2 Performance
+
+            - Angular 2 data bindings only go one xdway
+            - Change detection scales in Angular 2
+            - Provides several different change detection strategies
+              - Default, DefaultObserver, Checked, CheckedOnce, CheckedAlways, Detaches, OnPush
+            - For more infos see [Angular 2 Change Detection Explained](http://blog.thoughtram.io/angular/2016/02/22/angular-2-change-detection-explained.html)
+          </script>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Forms
+              - TemplateDriven
+                - Two-way data binding with ngModel
+                - Change tracking with ngControl
+                - ngForm
+              - ModelDriven
+                - Directives, ControlGroup, FormBuilder
+              - Builtin-validators, custom-validators
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+            </script>
+          </section>
+
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Dependency Injection
+
+              - Services must be decorated with **@Injectable** and also registered in the Bootstrapper
+              - Inject a service for TypeScript just with type and for ES6 with **@Inject**
+              - With **provide** you can use diferrent implementations of a service
+              - Every component can declare it owns providers
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              ## Injecting with Typescript
+```
+import { Injectable } from 'angular2/core';
+import { Http } from 'angular2/http';
+
+@Injectable()
+export class RaceService {
+  constructor(private _http: Http) {}
+
+  list() {
+    return this._http.get('http://localhost:9000/races').map(res => res.json());
+  }
+}
+```
+            </script>
+          </section>
+
+          <section data-markdown>
+            <script type="text/template">
+              ## Injecting with ES6
+```
+import { Injectable, Inject } from 'angular2/core';
+import { Http } from 'angular2/http';
+
+@Injectable()
+export class RaceService {
+  constructor(@Inject(Http) http) {
+    this._http = http;
+  }
+
+  list() {
+    return this._http.get('http://localhost:9000/races').map(res => res.json());
+  }
+}
+```
+            </script>
+          </section>
+
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Pipes
+
+            - Pipes are the replacement for the filters from NG1
+            - Use built-in pipes like json, slice, uppercase, number, percent, currency, date
+            - Write your own pipes sync but also asyn with using promises
+            - Pipe-class have to implement the function **transform**
+
+```
+@Pipe({name: 'fromNow'})
+export class FromNowPipe implements PipeTransform {
+  transform(value, args) {
+    return moment(value).fromNow();
+  }
+}
+```
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Http-Service
+
+            - Uses now RxJS
+            - Returns now an **Observable** instead of a promise (but toPromise() returns a promise)
+              - Provides methods like map, filter, select, catch [see also](http://xgrommx.github.io/rx-book//content/observable/observable_instance_methods/index.html)
+            - Http Default options - creates a request object to be optionally provided when instantiating a Request
+            - Supports JSONP (specify JSONP_PROVIDERS in bootstrap)
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## Angular 2 and RxJS
+
+            * Will also be used also to send events via the **EventEmitter** class
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## How to start
+
+            - Goto [angular.io](https://angular.io/)
+            - Compare Angular 1.0 with Angular 2.0 [here](https://angular.io/docs/ts/latest/cookbook/a1-a2-quick-reference.html)
+            - Watch course [egghead.io](https://egghead.io/lessons/angular-2-say-hello-world-to-angular-2)
+            - Wathc course from John Papa on [pluralsight](https://app.pluralsight.com/library/courses/angular-2-first-look/table-of-contents)
+            - Watch some videos on youtube: [Thinking in Angular 2.0](https://www.youtube.com/watch?v=XlqoPpLMdwY)
+            - see some [slides](http://de.slideshare.net/EyalV/http-communication-in-angular-20)
+            - Read a book [Become a ninja with Angular 2](https://books.ninja-squad.com/angular2)
+            - Learn [RxJS](http://xgrommx.github.io/rx-book//index.html)
+            - Start with [AngularCli](https://github.com/angular/angular-cli) or use yeoman
+          </script>
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            ## What's next
+
+            - Start new project **HowCanI** with using Angular 2
+            - **HowCanI** will be a **StackOverflow** clone with less features but for personal use
+            - Volunteers are welcome
+          </script>
+        </section>
+
       </div>
     </div>
 
