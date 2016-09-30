@@ -37,11 +37,34 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h1>Docker Swarm</h1>
-          <h3>The new way to host microservices</h3>
-          <p>
+          <section>
+            <h1>Docker Swarm</h1>
+            <h3>The new way to host microservices</h3>
+            <p>
             <small>Created by <a href="http://www.janbaer.de">Jan Baer</a> / <a href="http://twitter.com/reabnaj">@reabnaj</a></small>
-          </p>
+            </p>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              # What is Docker swarm
+
+              ![DockerSwarm](images/docker-swarm.png)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              # Use swarm mode routing mesh
+
+              ![Routing mesh](images/docker-routing-mesh.png)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              # Docker service mesh
+
+              ![Service mesh](images/docker-service-mesh.png)
+            </script>
+          </section>
         </section>
         <section>
           <section data-markdown>
@@ -49,8 +72,8 @@
               ## Docker Swarm - create a swarm
 
 ```
-docker swarm init
-  --advertise-addr {ip-address}
+docker swarm init \
+  --advertise-addr {ip-address}:2377 --listen-addr {ip-address}:2377
 ```
             </script>
           </section>
@@ -60,7 +83,7 @@ docker swarm init
 
 ```
 docker swarm join
-  --token SWMTKN-1-1s71kaft03jj22em77njc2rz8m3168tkjzhp93wtyz3e2301bl-8ww0dupc7lxw45myjzn0m9wfv
+  --token SWMTKN-1-1s71kaft03jj22em77njc2rz8m3168tkjzhp93wtyz3e2301bl-8ww0dupc7lxw45myjzn0m9wfv \
   {ip-address}:2377
 ```
             </script>
@@ -86,6 +109,12 @@ docker node update --availability drain core-02
 ```
 docker node inspect --pretty core-02
 ```
+
+              - make a worker afterwards to a manager
+
+```
+docker promote {id of worker}
+```
             </script>
           </section>
         </section>
@@ -99,11 +128,11 @@ docker node inspect --pretty core-02
               - strategies how a service should be distributed
 
 ```
-docker service create --name nodeapp
-                      --replicas 2
-                      --update-delay 10s
-                      --update-parallelism 1
-                      --publish 8080:8080
+docker service create --name nodeapp \
+                      --replicas 2 \
+                      --update-delay 10s \
+                      --update-parallelism 1 \
+                      --publish 8080:8080 \
                       janbaer/nodeapp:v1
 ```
 
@@ -111,13 +140,13 @@ docker service create --name nodeapp
           </section>
           <section data-markdown>
             <script type="text/template">
-               ## get infos about service with
+               ## Get infos about service with
 
 ```
 docker service inspect nodeapp --pretty
 ```
 
-- where are my service instances running
+- Where are my service instances running
 
 ```
 docker service ps nodeapp
@@ -145,6 +174,27 @@ docker service update --image janbaer/nodeapp:v2 nodeapp
 ```
               </script>
             </section>
+          </section>
+        </section>
+        <section>
+          <section data-markdown>
+            <script type="text/template">
+              # Further links
+
+              - [Docker 1.12: Now With Built-In Orchestration!](https://blog.docker.com/2016/06/docker-1-12-built-in-orchestration/)
+              - [Docker Swarm - An Analysis Of A Very-Large-Scale Container System](https://blog.online.net/2016/07/29/docker-swarm-an-analysis-of-a-very-large-scale-container-system/)
+              - [Use swarm mode routing mesh](https://docs.docker.com/engine/swarm/ingress/)
+              - [Docker: Swarm Mode on a Raspberry Pi Cluster](http://www.dabcc.com/docker-swarm-mode-on-a-raspberry-pi-cluster/)
+            </script>
+          </section>
+          <section data-markdown>
+            <script type="text/template">
+              # Whats next
+
+              - Play with docker swarm and try out some failover scenarios
+              - Findout - what are service networks?
+              - Findout - how to monitor our swarm ([COSCALE](http://www.coscale.com/docker-monitoring))
+            </script>
           </section>
         </section>
       </div>
