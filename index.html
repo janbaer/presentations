@@ -1,85 +1,33 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
   <head>
+    <title>Presentations - Jan Baer</title>
     <meta charset="utf-8">
-
-    <title>Presentations Jan Baer</title>
-
-    <meta name="description" content="">
-    <meta name="author" content="Jan Baer">
-
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/league.css" id="theme">
-
-    <!-- Code syntax highlighting -->
-    <link rel="stylesheet" href="lib/css/zenburn.css">
-
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement( 'link' );
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-      document.getElementsByTagName( 'head' )[0].appendChild( link );
-    </script>
+    <style>
+      @import url(./styles.css);
+    </style>
   </head>
-
   <body>
+    <textarea id="source">
 
-    <div class="reveal">
+class: center, middle, inverse
 
-      <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides">
-        <section>
-          <h1>Presentations Jan Baer</h1>
+# Presentations - Jan Baer
 
-          <ul>
-            <li><a href="vim">VIM/tmux</a></li>
-            <li><a href="angular2">Angular 2</a></li>
-            <li><a href="docker">Docker Swarm</a></li>
-            <li><a href="serviceworker">ServiceWorker</a></li>
-            <!--<li><a href="cssgrid">CSS Grid</a></li>-->
-          </ul>
+### [Angular2](/angular2.html)
+### [VIM](/vim.html)
+### [Docker Swarm](/docker.html)
+### [ServiceWorker](/serviceworker/index.html)
+### [CSS Grid](/cssgrid.html)
 
-          <p><a href="http://www.janbaer.de/presentations/index.html">www.janbaer.de/presentations</a></p>
-        </section>
+.footnote[<img src="http://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Twitter-icon.png" width="32px" height="32px" /> @reabnaj]
 
-      </div>
-    </div>
 
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
-
-    <script>
-
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
-
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
-
-        // Optional reveal.js plugins
-        dependencies: [
-          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-          { src: 'plugin/zoom-js/zoom.js', async: true },
-          { src: 'plugin/notes/notes.js', async: true }
-        ]
-      });
-
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
     </script>
-
+    <script>
+      var slideshow = remark.create();
+    </script>
   </body>
 </html>
