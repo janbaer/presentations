@@ -1,6 +1,6 @@
 class: inverse, hljs-monokai
 
-# ServiceWorker -  Features
+# ServiceWorker -  What is it
 
 - Better offline handling
 - Caching
@@ -14,7 +14,7 @@ class: inverse
 class: inverse
 # ServiceWorker - Requirements
 
-- Currently only supported in Firefox and Chrome - https://jakearchibald.github.io/isserviceworkerready/
+- Currently only supported in Firefox, Chrome and Opera - https://jakearchibald.github.io/isserviceworkerready/
 - Needs https, except localhost
 
 ---
