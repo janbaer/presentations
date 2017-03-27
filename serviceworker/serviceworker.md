@@ -36,11 +36,12 @@ MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_S
 
 ## ServiceWorker - Additional helpers
 
-- [sw-helpers from the Google Chrome team](https://github.com/GoogleChrome/sw-helpers/tree/master/packages/sw-precaching)
+- [sw-toolbox](https://github.com/GoogleChrome/sw-toolbox)
+- [sw-helpers](https://github.com/GoogleChrome/sw-helpers/tree/master/packages/sw-precaching)
 
 ## More code
 
-- [Service Worker Demos](https://github.com/w3c-webmob/ServiceWorkersDemos)
+- [ServiceWorker Demos](https://github.com/w3c-webmob/ServiceWorkersDemos)
 - [Offline Wikipedia by Jake Archibald](https://github.com/jakearchibald/offline-wikipedia)
-- [Speed up Service Worker with Navigation Preloads](https://developers.google.com/web/updates/2017/02/navigation-preload)
+- [Speed up ServiceWorker with Navigation Preloads](https://developers.google.com/web/updates/2017/02/navigation-preload)
 
