@@ -4,7 +4,7 @@ class: inverse, hljs-monokai
 
 - Better offline handling
 - Caching
-- Background loading
+- Background loading and sync
 - Push notifications
 - Alternative to [AppCache](https://www.html5rocks.com/en/tutorials/appcache/beginner/)
 
@@ -16,6 +16,13 @@ class: inverse
 
 - Currently only supported in Firefox, Chrome and Opera - https://jakearchibald.github.io/isserviceworkerready/
 - Needs https, except localhost
+
+## Good to know
+
+- It's a JavaScript Worker, so it's running in a background thread and it can't access the DOM
+directly. But it can send messages to the UI and receive messages from them.
+- It's terminated when not to use, and restarted when it's needed next
+- ServiceWorkers are using Promises and the Fetch API.
 
 ---
 class: inverse
