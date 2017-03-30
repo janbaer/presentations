@@ -28,6 +28,21 @@ directly. But it can send messages to the UI and receive messages from them.
 ---
 class: inverse
 
+# The Lifecycle of a ServiceWorker
+
+<img src="https://mdn.mozillademos.org/files/12636/sw-lifecycle.png" alt="Lifecycle" height="525px">
+
+
+---
+class: inverse
+
+# Hijack each request
+       
+<img src="https://mdn.mozillademos.org/files/12634/sw-fetch.png" alt="Hijack">
+
+---
+class: inverse
+
 # ServiceWorker - How to use it
 
 - [The offline cookbook by Jake Archibald](https://jakearchibald.com/2014/offline-cookbook/#on-install-as-a-dependency)
