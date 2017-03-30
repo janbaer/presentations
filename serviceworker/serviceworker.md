@@ -7,11 +7,12 @@ class: inverse, hljs-monokai
 - Background loading and sync
 - Push notifications
 - Alternative to [AppCache](https://www.html5rocks.com/en/tutorials/appcache/beginner/)
+- Similiar to
+[Webworkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 
 ---
 class: inverse
 
-class: inverse
 # ServiceWorker - Requirements
 
 - Currently only supported in Firefox, Chrome and Opera - https://jakearchibald.github.io/isserviceworkerready/
