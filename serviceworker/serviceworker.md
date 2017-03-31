@@ -2,6 +2,9 @@ class: inverse, hljs-monokai
 
 # ServiceWorker -  What is it
 
+It's a JavaScript Worker, so it's running in a background thread and it can't access the DOM
+directly. But it can send messages to the UI and receive messages from them.
+
 - Better offline handling
 - Caching
 - Background loading and sync
@@ -20,8 +23,6 @@ class: inverse
 
 ## Good to know
 
-- It's a JavaScript Worker, so it's running in a background thread and it can't access the DOM
-directly. But it can send messages to the UI and receive messages from them.
 - It's terminated when not to use, and restarted when it's needed next
 - ServiceWorkers are using Promises and the Fetch API.
 
