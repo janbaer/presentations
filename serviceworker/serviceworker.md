@@ -1,17 +1,14 @@
 class: inverse, hljs-monokai
 
-# ServiceWorker -  What is it
+# ServiceWorker -  Introduction
 
-It's a JavaScript Worker, so it's running in a background thread and it can't access the DOM
-directly. But it can send messages to the UI and receive messages from them.
-
-- Better offline handling
-- Caching
-- Background loading and sync
-- Push notifications
 - Alternative to [AppCache](https://www.html5rocks.com/en/tutorials/appcache/beginner/)
 - Similiar to
 [Webworkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
+- Better offline handling
+- Caching for faster response on slow networks
+- Background loading and sync
+- Push notifications (https://w3c.github.io/push-api/)
 
 ---
 class: inverse
@@ -19,27 +16,32 @@ class: inverse
 # ServiceWorker - Requirements
 
 - Currently only supported in Firefox, Chrome and Opera - https://jakearchibald.github.io/isserviceworkerready/
-- Needs https, except localhost
+- Needs https (except localhost)
 
 ## Good to know
 
 - It's terminated when not to use, and restarted when it's needed next
 - ServiceWorkers are using Promises and the Fetch API.
 
+## Global objects:
+
+- self - The instance of the ServiceWorker
+- cache - The object for caching requests by key
+- importScript - A function to import external scripts (sw-toolboox)
+
 ---
 class: inverse
 
 # The Lifecycle of a ServiceWorker
 
-<img src="https://mdn.mozillademos.org/files/12636/sw-lifecycle.png" alt="Lifecycle" height="525px">
+- Register the ServiceWorker.js in your **index.html** (returns a registration object)
+- Install - prefetch static files
+- Activate - remove old versions of your cache
+- Fetch - Hijack each request between your the browser and any server
 
+<img src="https://mdn.mozillademos.org/files/12634/sw-fetch.png" alt="Hijack" height="300px">
 
----
-class: inverse
-
-# Hijack each request
-
-<img src="https://mdn.mozillademos.org/files/12634/sw-fetch.png" alt="Hijack">
+- Sync - Trigger the sync event from the the UI and load it int the background
 
 ---
 class: inverse
@@ -105,4 +107,5 @@ class: inverse
 ServiceWorkers](https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/)
 - [Background synchronization
 explained](https://github.com/WICG/BackgroundSync/blob/master/explainer.md)
+- [push-api-demo](https://github.com/chrisdavidmills/push-api-demo)
 
