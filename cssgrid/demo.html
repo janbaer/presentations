@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS Grid Demo</title>
+  <style type="text/css" media="screen">
+    html, body {
+      width: 100vw;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    @supports (display: grid) {
+      body {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 100px 100px 100px auto 100px;
+        grid-template-areas: "header"
+                            "nav"
+                            "sidebar"
+                            "main"
+                            "footer"
+      }
+
+      @media (min-width: 501px) {
+        body {
+          grid-template-columns: minmax(200px, 1fr) 3fr minmax(200px, 1fr);
+          grid-template-rows: 100px auto 100px;
+          grid-template-areas: "header header header"
+                                "nav main sidebar"
+                                "footer footer footer"
+        }
+      }
+
+      header {
+        background-color: red;
+        grid-area: header;
+      }
+
+      aside {
+        background-color: navy;
+        grid-area: sidebar;
+      }
+
+      nav {
+        background-color: blue;
+        grid-area: nav;
+      }
+
+      main {
+        background-color: yellow;
+        grid-area: main;
+      }
+
+      footer {
+        background-color: green;
+        grid-area: footer;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>header</header>
+  <nav>navbar</nav>
+  <aside>sidebar</aside>
+  <main>content</main>
+  <footer>footer</footer>
+</body>
+</html>
