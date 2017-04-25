@@ -74,4 +74,5 @@ class: inverse
 layout](http://chris.house/blog/a-complete-guide-css-grid-layout/)
 - [CSS grid labs by Jen Simmons](http://labs.jensimmons.com/)
 - [Grid Layout CodePen](http://codepen.io/collection/DgwjNL/)
+- [Griddy.io](http://griddy.io/)
 
