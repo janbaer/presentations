@@ -25,19 +25,23 @@ class: inverse
 
 # Demo
 
-- [Demo](demo.html)
+- [Demo - Holy Grail Layout](demo.html)
+- [The Holy Grail with
+Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes#Holy_Grail_Layout_example)
 
 ---
 class: inverse
 
 # New Terms
 
-- grid-template-rows
-- grid-template-columns
-- grid-template-areas
-- grid-row
-- grid-column
-- grid-gap
+<img src="grid-terms.png" alt="Grid Terminoligy" height="300px">
+
+- grid-template-rows - Define count and size of rows
+- grid-template-columns - Define count and sice of columns
+- grid-template-areas - Define the areas of the grid
+- grid-row - Define in which rows an element should be shown
+- grid-column - Define in which columns an element should be shown
+- grid-gap - Define the space between the cells
 - fr - fraction-unit
 
 ---
@@ -50,19 +54,21 @@ class: inverse
 - grid-row: 2 / span 5
 - grid-column: first / last
 - grid-gap: 1em 2em
--
 
 ---
 class: inverse
 
 # Useful helpers
 
-- repeat - Don't repeat your self
-- minmax
-- min-content
-- max-content
-- auto-fill
-- auto-fit
+- repeat - Represents a repeated fragment of the track list
+- minmax - Defines a size range greater than or equal to min and less than or equal to max
+- min-content - Represents the largest min-content contribution of the grid items occupying the grid
+track.
+- max-content - Represents the largest max-content contribution of the grid items occupying the grid
+track.
+- auto-fill - Example ```repeat(auto-fill, minmax(25ch, 1fr))```
+- auto-fit - The auto-fit keyword behaves the same as auto-fill, except that after grid item
+placement any empty repeated tracks are collapsed.
 
 ---
 class: inverse
@@ -70,6 +76,7 @@ class: inverse
 # Links
 
 - [W3C - The official spec](https://www.w3.org/TR/css3-grid-layout/)
+- [Basic_Concepts_of_Grid_Layout](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Basic_Concepts_of_Grid_Layout)
 - [Chris House - A complete guide for CSS Grid
 layout](http://chris.house/blog/a-complete-guide-css-grid-layout/)
 - [CSS grid labs by Jen Simmons](http://labs.jensimmons.com/)
