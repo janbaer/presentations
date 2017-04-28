@@ -1,4 +1,12 @@
-class: inverse, hljs-monokai
+class: center, middle, inverse, hljs-monokai
+
+# CSS Grid Layout
+
+Defines a two-dimensional grid-based layout system,<br>
+optimized for user interface design
+
+---
+class: inverse
 
 # CSS Grid
 
@@ -10,9 +18,12 @@ Grid is for 2 dimensional layout, both columns and rows
 
 Flexbox is for 1 dimensional layout, a column or a row
 
+---
+class: inverse
+
 ## Where [can I use](http://caniuse.com/?utm_campaign=CSS%2BLayout%2BNews&utm_medium=email&utm_source=CSS_Layout_News_87#feat=css-grid) it
 
-- All modern browsers
+- All modern browsers (since March 2017)
   - Chrome 57
   - Firefox 52
   - Opera 44
@@ -25,7 +36,7 @@ class: inverse
 
 # Demo
 
-- [Demo - Holy Grail Layout](demo.html)
+- [Demo - The Holy Grail Layout](demo.html)
 - [The Holy Grail with
 Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes#Holy_Grail_Layout_example)
 
@@ -34,8 +45,9 @@ class: inverse
 
 # New Terms
 
-<img src="grid-terms.png" alt="Grid Terminoligy" height="300px">
+<img src="grid-terms.png" alt="Grid Terminology" height="300px">
 
+- display: grid
 - grid-template-rows - Define count and size of rows
 - grid-template-columns - Define count and sice of columns
 - grid-template-areas - Define the areas of the grid
@@ -49,7 +61,7 @@ class: inverse
 
 # Many ways to write
 
-- grid-template-columns: 200px 1fr 1fr minmax(200px, 1fr)
+- grid-template-columns: [first] 200px 1fr 1fr [last] minmax(200px, 1fr)
 - grid-template-rows: repeat(4, 400px)
 - grid-row: 2 / span 5
 - grid-column: first / last
