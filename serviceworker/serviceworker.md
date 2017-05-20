@@ -1,5 +1,3 @@
-class: inverse, hljs-monokai
-
 # ServiceWorker -  Introduction
 
 - Alternative to [AppCache](https://www.html5rocks.com/en/tutorials/appcache/beginner/)
@@ -11,7 +9,6 @@ class: inverse, hljs-monokai
 - Push notifications (https://w3c.github.io/push-api/)
 
 ---
-class: inverse
 
 # ServiceWorker - Requirements
 
@@ -30,7 +27,6 @@ class: inverse
 - importScript - A function to import external scripts (sw-toolboox)
 
 ---
-class: inverse
 
 # The Lifecycle of a ServiceWorker
 
@@ -44,7 +40,6 @@ class: inverse
 - Sync - Trigger the sync event from the the UI and load it int the background
 
 ---
-class: inverse
 
 # ServiceWorker - How to use it
 
@@ -59,7 +54,6 @@ MDN](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_S
 - [sw-helpers](https://github.com/GoogleChrome/sw-helpers/tree/master/packages/sw-precaching)
 
 ---
-class: inverse
 
 # How to start a background sync
 
@@ -95,7 +89,6 @@ navigator.serviceWorker.ready.then(function(registration) {
 ```
 
 ---
-class: inverse
 
 # More code
 

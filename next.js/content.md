@@ -1,5 +1,3 @@
-class: inverse, hljs-monokai
-
 # Next.js
 
 - Serverside rendering React.js framework
@@ -12,7 +10,6 @@ class: inverse, hljs-monokai
 - Static file serving (put files in the **static** folder)
 
 ---
-class: inverse
 
 # Demo - Initial data on server or client
 
@@ -35,7 +32,6 @@ export default class extends React.Component {
 ```
 
 ---
-clas: inverse
 
 # Demo and some more code
 

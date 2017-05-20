@@ -1,4 +1,4 @@
-class: center, middle, inverse, hljs-monokai
+class: center, middle
 
 # CSS Grid Layout
 
@@ -19,7 +19,6 @@ Grid is for 2 dimensional layout, both columns and rows
 Flexbox is for 1 dimensional layout, a column or a row
 
 ---
-class: inverse
 
 ## Where [can I use](http://caniuse.com/?utm_campaign=CSS%2BLayout%2BNews&utm_medium=email&utm_source=CSS_Layout_News_87#feat=css-grid) it
 
@@ -32,7 +31,6 @@ class: inverse
   - IE 10 (old Syntax)
 
 ---
-class: inverse
 
 # Demo
 
@@ -41,7 +39,6 @@ class: inverse
 Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes#Holy_Grail_Layout_example)
 
 ---
-class: inverse
 
 # New Terms
 
@@ -57,7 +54,6 @@ class: inverse
 - fr - fraction-unit
 
 ---
-class: inverse
 
 # Many ways to write
 
@@ -68,7 +64,6 @@ class: inverse
 - grid-gap: 1em 2em
 
 ---
-class: inverse
 
 # Useful helpers
 
@@ -83,7 +78,6 @@ track.
 placement any empty repeated tracks are collapsed.
 
 ---
-class: inverse
 
 # Links
 
