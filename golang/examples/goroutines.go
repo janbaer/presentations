@@ -11,7 +11,7 @@ import (
 // main is the entry point for all Go programs.
 func main() {
 	fmt.Printf("My computer has %d cores\n", runtime.NumCPU())
-	
+
 	// Allocate two logical processors for the scheduler to use.
 	runtime.GOMAXPROCS(runtime.NumCPU())
 

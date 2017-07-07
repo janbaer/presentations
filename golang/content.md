@@ -150,6 +150,7 @@ or choose your required package from https://golang.org/dl/
       - bin
       - src
 ```
+- For MacOS you can use Brew
 
 - [Or play with Go online in the Go playground](https://play.golang.org)
 
@@ -282,13 +283,12 @@ fmt.Println("address of b is", b)
 
 - Go has no enumerations
 - Use a const with the [iota](https://github.com/golang/go/wiki/Iota) identifier instead
-```
+```go
 const (
   Sunday = iota // 0
   Monday        // 1
   Tuesday       // 2
   ...
-    
 )
 ```
 
