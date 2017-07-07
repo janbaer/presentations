@@ -558,8 +558,7 @@ the corresponding key.
 # How about testing
 
 - Go supports testing out of box + benchmarking
-
-```
+```go
 import "testing"
 
 func Test_fail(t *testing.T) {
@@ -570,8 +569,8 @@ func Test_fail(t *testing.T) {
 ```
 
 - See [Type T](https://golang.org/pkg/testing/#T)
-- github.com/stretchr/testify/assert
-- github.com/smartystreets/goconvey/convey
+- (testify/assert)[github.com/stretchr/testify/assert]
+- (goconvey)[github.com/smartystreets/goconvey/convey]
 
 
 <img src="images/gopher.png" alt="Gopher" class="gopher-logo" >
