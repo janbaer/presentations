@@ -136,7 +136,7 @@ async function cacheFirst(request) {
 }
 ```
 
-[More about stragies](https://jakearchibald.com/2014/offline-cookbook/#cache-only)
+[More about strategies](https://jakearchibald.com/2014/offline-cookbook/#cache-only)
 
 ---
 
