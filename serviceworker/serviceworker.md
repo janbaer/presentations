@@ -3,6 +3,7 @@
 - Better alternative to [AppCache](https://www.html5rocks.com/en/tutorials/appcache/beginner/)
 - Similiar to [Webworkers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 - Runs in a separate thread in the browser (No access to the DOM)
+- Communicates with the UI thread via messages **client.postMessage**
 
 ---
 
@@ -150,6 +151,7 @@ async function cacheFirst(request) {
   - Will be checked with each-request
   - Use version key to make it byte-different
   - Do not cache the service-worker.js on the client side
+- A ServiceWorker is ready on the second visit
 
 ---
 
@@ -192,6 +194,7 @@ describe('Service worker', () => {
 
 - [sw-precache](https://github.com/GoogleChromeLabs/sw-precache) to generate a service-worker in your build process
 - [sw-toolbox](https://github.com/GoogleChrome/sw-toolbox)
+- [Workbox](https://github.com/googlechrome/workbox) - The successor of sw-toolbox
 
 ---
 
