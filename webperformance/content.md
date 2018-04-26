@@ -156,7 +156,18 @@ class: center, middle
 
 ---
 
-# Second step
+# Second step - help from the server side
+
+- [HTTP cache headers](https://www.keycdn.com/blog/http-cache-headers/)
+- Activate data compression (Gzip, Brotli)
+
+.center[
+  **Netflix saw a 43% decrease in their bandwidth bill after turning on Gzip**
+]
+
+---
+
+# Third step
 
 - Optimize your webpage
   - Use AppShell aka [PRPL](https://developers.google.com/web/fundamentals/performance/prpl-pattern/) pattern
@@ -168,12 +179,6 @@ class: center, middle
 - Observe your Third Parties
   - Ads or social widgets can take a lot time, size and performance
 - Finding large images resulting in bottlenecks
-
----
-
-# Help from the server side
-
-- [HTTP cache headers](https://www.keycdn.com/blog/http-cache-headers/)
 
 ---
 
@@ -229,9 +234,9 @@ class: center, middle
 
 .left[
 - Could be the biggest bottleneck since it's completely blocking the rendering
+- Try to inline the app-shell css to not have the need to wait for loading external css
 - Don't use @import since it prevents parallization
-- csstriggers.com shows which reactions occurs which effect
-- selector preformance - selection starts always from the last select (in case you use **.nav li a {}**. But not for **.nav > li > a {}**
+- [csstriggers.com](http://csstriggers.com) shows which reactions occurs which effect
 ]
 
 ---
