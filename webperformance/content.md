@@ -28,7 +28,7 @@ class: center, middle
 feels are very different things.**]
 
 - 100ms: Feels instantaneous, no special feedback is necessary, display the result.
-- 1,000ms: Flow of thought stays uninterrupted but user will notice the delay. No feedback necessary during delays >100ms but
+- 1,000ms: Flow of thought stays uninterrupted but user will notice the delay. No feedback necessary during delays >100ms
 - <1000ms.10,000ms: Limit for keeping user’s attention. Users will want to
 perform other tasks while waiting for the computer to finish; give
 feedback indicating when task expects to be done.
@@ -100,6 +100,8 @@ class: center, middle
 
 <img src="images/networkanalysis.png" alt="Networkanalysis" width="100%">
 
+[Understanding resource timing](https://developers.google.com/web/tools/chrome-devtools/network-performance/understanding-resource-timing)
+
 ---
 
 # Analyze the render performance
@@ -116,8 +118,10 @@ class: center, middle
 
 .left[
 - Reduce network speed in the DevTools or better use a proxy tools
-- Charles-proxy can slow down connections by domain, for example to check what'll happen when the
+- Charles-proxy (MacOS) can slow down connections by domain, for example to check what'll happen when the
 DNS servers are slow
+- Try to imagine you would life in Melbourne - [Pindom
+    test](https://tools.pingdom.com/#!/d9bHd4/bu.check24.de)
 ]
 
 ---
