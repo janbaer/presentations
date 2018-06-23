@@ -1,6 +1,6 @@
-# My presentations
+# Presentations
 
 This repository contains the content for my presentations
 
 You can browse the presentations online at
-[www.janbaer.de/presentations](http://www.janbaer.de/presentations/index.html)
+[presentations.janbaer.de](https://presentations.janbaer.de)
