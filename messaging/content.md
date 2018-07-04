@@ -35,7 +35,7 @@ class: center, middle
 
 ## Pro
 
-- Immedediately feedback from the other service
+- Immediately feedback from the other service
 - Good debuggable (hopefully)
 
 --
@@ -44,8 +44,8 @@ class: center, middle
 
 - Strongly coupled
 - Any service can slow down the other or the whole process chain
-- Special error handling required when a consumer service is down
-- All services have alwas to be online
+- Special error handling required when any service in the chain is down
+- All services have always to be online
 
 ---
 
@@ -53,7 +53,8 @@ class: center, middle
 
 # Event driven
 
-- A service (producer) is sending an event in messaging system and another service (consumer) which is interested will receive the message some later
+- A service (producer) is sending an event in messaging system and another service (consumer)
+which is interested on such messages will receive the message some later
 
 <p style="padding: 40px;">
   <img src="images/message_queue.png" alt="PubSub" width="80%">
@@ -77,7 +78,7 @@ class: center, middle
 - More complexity in your system landscape
 - Messageflow eventually slower
 - Harder debuggable
-- Probablly SPF
+- Probably SPF
 
 ---
 
@@ -114,7 +115,7 @@ addition of nodes to the cluster. Supports both pub-sub and load-balanced messag
 
 
 <p style="padding: 40px;">
-  <img src="images/nsq_message_flow.png" alt="PubSub" width="80%">
+  <img src="images/nsq_message_flow.png" alt="NSQ Messageflow" width="80%">
 </p>
 ---
 
@@ -122,7 +123,7 @@ addition of nodes to the cluster. Supports both pub-sub and load-balanced messag
 
 
 <p style="padding: 40px;">
-  <img src="images/nsq_cluster.png" alt="PubSub" width="80%">
+  <img src="images/nsq_cluster.png" alt="NSQ Cluster" width="80%">
 </p>
 ---
 
