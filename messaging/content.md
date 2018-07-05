@@ -111,22 +111,6 @@ addition of nodes to the cluster. Supports both pub-sub and load-balanced messag
 
 ---
 
-# NSQ - MessageFlow
-
-
-<p style="padding: 40px;">
-  <img src="images/nsq_message_flow.png" alt="NSQ Messageflow" width="80%">
-</p>
----
-
-# NSQ - Typical cluster
-
-
-<p style="padding: 40px;">
-  <img src="images/nsq_cluster.png" alt="NSQ Cluster" width="80%">
-</p>
----
-
 # NSQ
 
 - **topics** - a topic is the logical key where a program publishes messages. Topics are created when
@@ -163,6 +147,21 @@ to. Consumers connect to these nodes to determine which nsqd nodes to read from.
 Clients can publish or read from the nsqd daemon. Typically publishers will publish to a single,
 local nsqd. Consumers read remotely from the connected set of nsqd nodes with that topic. If
 you don’t care about adding more nodes dynamically, you can run nsqds standalone.
+
+---
+
+# NSQ - MessageFlow
+
+<p style="padding: 40px;">
+  <img src="images/nsq_message_flow.png" alt="NSQ Messageflow" width="80%">
+</p>
+---
+
+# NSQ - Typical cluster
+
+<p style="padding: 40px;">
+  <img src="images/nsq_cluster.png" alt="NSQ Cluster" width="80%">
+</p>
 
 ---
 
