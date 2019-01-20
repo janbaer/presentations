@@ -2,12 +2,14 @@
 title: From Markdown to PDF
 subtitle: Create presentations and letters with Markdown and Pandoc
 author: Jan Baer
-date: 10.01.2019
-theme: Madrid
-colortheme: dolphin
-font-family: noto-sans
+institute: My company
+lang: de
+date: \today
+theme: metropolis
+colortheme: metropolis #seahorse
 linkcolor: blue
-classoption: "10pt"
+fontsize: 14pt
+classoption: notes
 ---
 
 # Slide 1
@@ -22,17 +24,26 @@ This is the content and [here](pandoc.md) is the source code.
   - A nested list
 - Back to the roots
 
-# Slide 3
+# Use Latex and Markdown together
 
 It's possible to use some \LaTeX\hspace{2pt}directly in your Markdown text.
+You can use it also with defining a multi-column layout. Use equatations inline $\pi$
 
-You can use it also with defining a multi-column layout.
+$$s=\sqrt{\frac{1}{N-1}\sum_{i=1}^N(x_i-\overline{x})^{2}}$$
+
+\note{
+  This is a note just for the presenter
+}
+
+# Multiple column layout
+
+Use your own \LaTeX\ commands to define columns.
 
 \colA{6cm}
 
-* This is a list
-* Second item
-* third item
+* This is a list \pause
+* Second item \pause
+* third item \pause
 
 \colB{6cm}
 
@@ -40,7 +51,20 @@ You can use it also with defining a multi-column layout.
 
 \colEnd
 
-# Slide 4
+---
+
+# Tables
+
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+{#tbl:table}
+
+# Images
 
 Show an image is very easy
 
@@ -87,6 +111,7 @@ docker run --rm -v `pwd`:/tmp \
 * [The BEAMER class](http://tug.ctan.org/tex-archive/macros/latex/contrib/beamer/doc/beameruserguide.pdf)
 * [Beamer-Theme-Matrix](https://hartwork.org/beamer-theme-matrix/)
 * [More BEAMER themes](https://bitbucket.org/marczellm/beamerports)
+* [And much more BEAMER themes](https://latex.simon04.net/)
 * [Ultimate BEAMER theme list](https://github.com/martinbjeldbak/ultimate-beamer-theme-list)
 * [From Markdown to Presentation with Pandoc](https://github.com/shd101wyy/markdown-preview-enhanced/blob/master/docs/pandoc-beamer.md)
 * [Folien mit Pandoc erstellen](https://kofler.info/folien-mit-pandoc-erstellen/)
