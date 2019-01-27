@@ -74,6 +74,26 @@ Show an image is very easy
 
 ![Latex](images/latex.png){width=5cm}
 
+# Use filters for external formats
+
+``` {#pandoc-workflow .dot .process}
+digraph workflow {
+  resources [shape=record, style=solid,
+             label="{resources|{<f0>images |<f1>bibliography}}"];
+  styles [shape=record, style=solid,
+          label="{styles|{<f0>CSL |<f1>template}}"];
+  { rank=same; resources styles }
+  Markdown -> pandoc;
+  resources -> pandoc; styles -> pandoc;
+  pandoc -> pandoc [label=filters];
+  pandoc -> docx; pandoc -> ePUB;
+  pandoc -> PDF;  pandoc -> LaTeX;
+  pandoc -> HTML; pandoc -> revealjs;
+  pandoc -> ODF;
+  Markdown -> resources [style=dotted, label="references"];
+}
+```
+
 # Preconditions
 
 - Install **Texlive**
