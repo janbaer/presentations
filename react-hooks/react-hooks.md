@@ -27,23 +27,29 @@ linkcolor: blue
   - useRef
   - useCallback
   - useMemo
-  - [...](https://reactjs.org/docs/hooks-reference.html)
+  - ...
+  
+  [More information](https://reactjs.org/docs/hooks-reference.html)
 
 # useState
 
-- Returns a stateful value, and a function to update it. During the initial render, the returned state (state) is the same as the value passed as the first argument (initialState). The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
-- Is perfect for managing a state on a single component. But it isn't for shared states.
-- You can use a state object but also only a single value as a state
-- You can use **useState** multiple times in the same component
-- **useState** takes an inital state value or a function as parameter to lazy initialize the value
+- Returns a stateful value, and a function to update it. During the initial render, the returned state (state) is the same as the value passed as the first argument (initialState). The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component.\pause
+- Is perfect for managing a state on a single component. But it isn't for shared states.\pause
+- You can use a state object but also only a single value as a state\pause
+- You can use **useState** multiple times in the same component\pause
+- **useState** takes an inital state value or a function as parameter to lazy initialize the value\pause
 
 # useState
 
 ```javascript
 const [{state}, set{State}] = useState(initialState);
-...
+```
+\pause
+
+```javascript
 setCounter(counter + 1);
 ```
+\pause
 
 ```javascript
 const [state, setState] = useState(() => {
@@ -73,23 +79,26 @@ useEffect(() => {
 }, []);
 ```
 
-- [Example](https://codesandbox.io/s/2352937qzp)
+# useEffect
+
+- [Demo](https://codesandbox.io/s/2352937qzp)
 
 # useContext
 
-- Accepts a context object (the value returned from React.createContext) and returns the current context value, as given by the nearest context provider for the given context.
+- Accepts a context object (the value returned from React.createContext) and returns the current context value, as given by the nearest context provider for the given context. \pause
 - When the provider updates, this Hook will trigger a rerender with the latest context value.
 
-- [Example](https://codesandbox.io/s/kk740xzrj7)
-- [Example2](https://tinkerylabs.com/react-context-api-with-hooks/)
+# useContext
+
+- [Demo](https://codesandbox.io/s/kk740xzrj7)
 
 ---
 
 # Rules of Hooks
 
-- Only call hooks at the top level of your function. Don’t put them in loops, conditionals, or nested functions. In order for React to keep track of your hooks, the same ones need to be called in the same order every single time.
-- Only call hooks from React function components, or from custom hooks. Don’t call them from outside a component (what would that even do?). Keeping all the calls inside components and custom hooks makes your code easier to follow too, because all the related logic is grouped together.
-- The names of hooks must start with “use”. Like useState or useEffect (well, not those two, those are taken).
+- Only call hooks at the top level of your function. Don’t put them in loops, conditionals, or nested functions. In order for React to keep track of your hooks, the same ones need to be called in the same order every single time. \pause
+- Only call hooks from React function components, or from custom hooks. Don’t call them from outside a component. Keeping all the calls inside components and custom hooks makes your code easier to follow too, because all the related logic is grouped together. \pause
+- The names of hooks must start with “use”. Like useState or useEffect.
 
 
 
@@ -100,7 +109,4 @@ useEffect(() => {
 # External hooks
 
 - [mobx-react-lite](https://github.com/mobxjs/mobx-react-lite)
-
-
-
 
