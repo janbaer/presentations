@@ -33,23 +33,27 @@ linkcolor: blue
 
 # useState
 
-- Returns a stateful value, and a function to update it. During the initial render, the returned state (state) is the same as the value passed as the first argument (initialState). The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component.\pause
-- Is perfect for managing a state on a single component. But it isn't for shared states.\pause
-- You can use a state object but also only a single value as a state\pause
-- You can use **useState** multiple times in the same component\pause
-- **useState** takes an inital state value or a function as parameter to lazy initialize the value\pause
+- Returns a stateful value, and a function to update it. During the initial render, the returned state (state) is the same as the value passed as the first argument (initialState). The setState function is used to update the state. It accepts a new state value and enqueues a re-render of the component.
+- Is perfect for managing a state on a single component. But it isn't for shared states.
+- You can use a state object but also only a single value as a state
+- You can use **useState** multiple times in the same component
+- **useState** takes an inital state value or a function as parameter to lazy initialize the value
 
 # useState
+
+- Create a state with an initial value
 
 ```javascript
 const [{state}, set{State}] = useState(initialState);
 ```
-\pause
+
+- Update the state with a new value
 
 ```javascript
-setCounter(counter + 1);
+setState(newState);
 ```
-\pause
+
+- Alternatively create a state with using a lazy function
 
 ```javascript
 const [state, setState] = useState(() => {
@@ -60,8 +64,8 @@ const [state, setState] = useState(() => {
 
 # useEffect
 
-- The Effect Hook lets you perform side effects in function components. If you’re familiar with React class lifecycle methods, you can think of useEffect Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined. \pause
-- useEffect let you control how often it should be called \pause
+- The Effect Hook lets you perform side effects in function components. If you’re familiar with React class lifecycle methods, you can think of **useEffect** Hook as componentDidMount, componentDidUpdate, and componentWillUnmount combined. 
+- **useEffect** let you control how often it should be called 
 - When you return a cleanup function then it will be called when the component will be unmounted
 
 ---
@@ -85,7 +89,7 @@ useEffect(() => {
 
 # useContext
 
-- Accepts a context object (the value returned from React.createContext) and returns the current context value, as given by the nearest context provider for the given context. \pause
+- Accepts a context object (the value returned from **React.createContext**) and returns the current context value, as given by the nearest context provider for the given context. 
 - When the provider updates, this Hook will trigger a rerender with the latest context value.
 
 # useContext
@@ -96,11 +100,9 @@ useEffect(() => {
 
 # Rules of Hooks
 
-- Only call hooks at the top level of your function. Don’t put them in loops, conditionals, or nested functions. In order for React to keep track of your hooks, the same ones need to be called in the same order every single time. \pause
-- Only call hooks from React function components, or from custom hooks. Don’t call them from outside a component. Keeping all the calls inside components and custom hooks makes your code easier to follow too, because all the related logic is grouped together. \pause
-- The names of hooks must start with “use”. Like useState or useEffect.
-
-
+- Only call hooks at the top level of your function. Don’t put them in loops, conditionals, or nested functions. In order for React to keep track of your hooks, the same ones need to be called in the same order every single time. 
+- Only call hooks from React function components, or from custom hooks. Don’t call them from outside a component. Keeping all the calls inside components and custom hooks makes your code easier to follow too, because all the related logic is grouped together. 
+- The names of hooks must start with **use**. Like **useState** or **useEffect**.
 
 # Write your own hooks
 

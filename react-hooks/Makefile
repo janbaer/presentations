@@ -2,7 +2,7 @@ MAKEFLAGS += --silent
 
 build:
 	docker run --rm -v `pwd`:/tmp janbaer/texlive-pandoc  \
-	  pandoc -f markdown -t beamer -H header.tex          \
+	  pandoc -f markdown -t beamer                        \
 	         react-hooks.md -o react-hooks.pdf
 
 watch:
