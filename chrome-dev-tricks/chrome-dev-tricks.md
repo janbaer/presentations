@@ -120,13 +120,13 @@ document.querySelector('#demo1')
 
 ---
 
-\section{Tips and Tricks}
+\section{More Tips and Tricks}
 
 ---
 
 - Force state - makes states (hover, focus, active) permanent
 
-. . .
+---
 
 
 - [Argument hints](https://developers.google.com/web/updates/2018/05/devtools#hints)
@@ -148,3 +148,17 @@ document.querySelector('#demo1')
 - View interactive media queries
 
 ![](images/media-queries.png){width=10cm}
+
+---
+
+- Record the code-coverage for your JavaScript and CSS
+
+![](images/coverage.png){width=10cm}
+
+---
+
+- [Special Keywords for filtering network requests](https://developers.google.com/web/tools/chrome-devtools/network/reference#filter)
+
+---
+
+\section{Thank you!}
