@@ -18,6 +18,9 @@ themeoptions:
   - progressbar=foot
 header-includes:
   - \setbeamercolor{frametitle}{bg=MidnightBlue}
+  - '\makeatletter'
+  - '\beamer@ignorenonframefalse'
+  - '\makeatother'
 
 ---
 
@@ -45,9 +48,9 @@ header-includes:
 - [What's new in Chrome DevTools 71](https://developers.google.com/web/updates/2018/10/devtools)
 - [What's new in Chrome DevTools 70](https://developers.google.com/web/updates/2018/08/devtools)
 
----
+# {.standout}
 
-\section{What's happend since version 70}
+What's happend since version 70
 
 ---
 
