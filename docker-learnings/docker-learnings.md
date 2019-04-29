@@ -17,6 +17,7 @@ themeoptions:
   - background=light
   - progressbar=foot
 header-includes:
+  - \usepackage[export]{adjustbox}
   - \setbeamercolor{frametitle}{bg=MidnightBlue}
   - '\makeatletter'
   - '\beamer@ignorenonframefalse'
@@ -24,34 +25,54 @@ header-includes:
 
 ---
 
+# 
+
+\includegraphics[center, margin= 0 0 0 10pt]{./images/docker.jpg}
+
 # {.standout}
 
 - This talk is not about Kubernetes or Docker Swarm
 
+# Security
+
+- You shouldn't run your container as root
+  - Create user in Dockerfile
+  - Take care about **uid**, map to an existing uid on the host if needed
+- Give only the privileges you really need
+  - [Docker documentation](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities)
+```bash
+docker run -d --cap-drop CHOWN alpine
+```
+- Using **tmpfs** for sensitive data which shouldn't be saved outside of the container
+```bash
+--tmpfs /tmp/${CONTAINER_NAME}:uid=1000,gid=1000
+```
+
+
 ---
 
-\section{You shouldn't run your container as root}
+# Docker build - How to build smaller images
+
+- Use multistage builds
+- Use build cache (copy package.json and yarn.lock in an extra step before yarn install)
+- Remove dev node_modules before copy
 
 ---
 
-\section{How to build smaller images}
-
----
-
-\section{Cleanup up your Docker with prune}
+\section{Maintaining - Cleanup up your Docker with prune}
 
 ---
 
 # Cleanup
 
-- Remove dangling images with `docker image prune`
-- Remove stopped containers with `docker container prune`
-- Same for network and volume or all in once with `docker system prune`
-- Autoremove a container after it's stopped with `docker --rm...`
+- Remove dangling images with **docker image prune**
+- Remove stopped containers with **docker container prune**
+- Same for network and volume or all in once with **docker system prune**
+- Autoremove a container after it's stopped with **docker --rm...**
 
 ---
 
-\section{Using a UI in the browser or terminal}
+\section{More tips - Using a UI in the browser or terminal}
 
 # Use portainer locally without a password
 
@@ -81,7 +102,6 @@ alias sen="docker run --rm --name=sen
 
 ![](images/ctop.png){width=10cm}
 
-
 ---
 
 \section{Keep an eye on your logfiles}
@@ -109,6 +129,25 @@ To delete all log files, you can use the following command
 find /var/lib/docker/containers/
     -type f -name "*.log" -delete
 ```
+
+# Take care about the size of your Docker log files
+
+- When using JSON File logging driver (which is the default)
+  - Using **/etc/docker/daemon.json**
+```json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
+}
+```
+  - Or using commandline option
+```bash
+docker run --rm -it --log-opt max-size=10m alpine
+```
+  - [See also](https://docs.docker.com/config/containers/logging/json-file/)
 
 # {.standout}
 
