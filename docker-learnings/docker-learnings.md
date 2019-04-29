@@ -1,6 +1,6 @@
 ---
 title: Docker learnings
-subtitle: Learnings from using Docker after 3 years
+subtitle: Learnings from using Docker after 3 years of usage
 author: Jan Baer
 institute: 
 lang: de
@@ -31,7 +31,7 @@ header-includes:
 
 # {.standout}
 
-- This talk is not about Kubernetes or Docker Swarm
+This talk is not about Kubernetes or Docker Swarm
 
 # Security
 
@@ -47,7 +47,6 @@ docker run -d --cap-drop CHOWN alpine
 ```bash
 --tmpfs /tmp/${CONTAINER_NAME}:uid=1000,gid=1000
 ```
-
 
 ---
 
@@ -72,6 +71,55 @@ docker run -d --cap-drop CHOWN alpine
 
 ---
 
+\section{Keep an eye on your logfiles}
+
+# How to grep the logs
+
+```bash
+docker logs {container} | grep {term}
+```
+
+This might will not work as expected
+
+\pause
+
+```bash
+docker logs {container} 2>&1 | grep {term} | less
+```
+The reason why it's not working in the way you would expect is, that docker is not logging always to stdout. Instead it's logging the stderror. So you have to redirect stderror to stdout before your can pipe it to grep.
+
+# Take care about the size of your Docker log files
+
+- When using JSON File logging driver (which is the default)
+  - Using **/etc/docker/daemon.json**
+```json
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "10m",
+    "max-file": "3"
+  }
+}
+```
+  - Or using commandline option
+```bash
+docker run --rm -it --log-opt max-size=10m alpine
+```
+  - [See also](https://docs.docker.com/config/containers/logging/json-file/)
+
+---
+
+# Cleanup the Docker logs
+
+To delete all log files, you can use the following command
+
+```bash
+find /var/lib/docker/containers/
+    -type f -name "*.log" -delete
+```
+
+# Configuring extra host names or DNS
+
 \section{More tips - Using a UI in the browser or terminal}
 
 # Use portainer locally without a password
@@ -93,7 +141,6 @@ alias sen="docker run --rm --name=sen
   -v /var/run/docker.sock:/run/docker.sock 
   -ti -e TERM tomastomecek/sen"
 ```
-
 ![](images/sen.png){width=8cm}
 
 # Use ctop for monitoring your local containers
@@ -102,52 +149,13 @@ alias sen="docker run --rm --name=sen
 
 ![](images/ctop.png){width=10cm}
 
----
+# You won't need to be sudo always
 
-\section{Keep an eye on your logfiles}
-
-# How to grep the logs
+To prevent to make all Docker related operations with the root user, add yourself to the Docker group
 
 ```bash
-docker logs {container} | grep {term}
+sudo usermod -a -G docker $(whoami)
 ```
-
-This will not work as expected
-
-\pause
-
-```bash
-docker logs {container} 2>&1 | grep {term}
-```
-The reason why it's not working in the way you would expect is, that docker is not logging to stdout. Instead it's logging the stderror. So you have to redirect stderror to stdout before your can pipe it to grep.
-
-# Cleanup the Docker logs
-
-To delete all log files, you can use the following command
-
-```bash
-find /var/lib/docker/containers/
-    -type f -name "*.log" -delete
-```
-
-# Take care about the size of your Docker log files
-
-- When using JSON File logging driver (which is the default)
-  - Using **/etc/docker/daemon.json**
-```json
-{
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "10m",
-    "max-file": "3"
-  }
-}
-```
-  - Or using commandline option
-```bash
-docker run --rm -it --log-opt max-size=10m alpine
-```
-  - [See also](https://docs.docker.com/config/containers/logging/json-file/)
 
 # {.standout}
 
