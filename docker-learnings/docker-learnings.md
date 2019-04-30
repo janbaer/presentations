@@ -25,40 +25,46 @@ header-includes:
 
 ---
 
-# 
-
 \includegraphics[center, margin= 0 0 0 10pt]{./images/docker.jpg}
 
 # {.standout}
 
 This talk is not about Kubernetes or Docker Swarm
 
+---
+
+\section{Security}
+
 # Security
 
-- You shouldn't run your container as root
-  - Create user in Dockerfile
-  - Take care about **uid**, map to an existing uid on the host if needed
-- Give only the privileges you really need
+- You shouldn't run your container as root \pause
+  - Create user in Dockerfile \pause
+  - Take care about **uid**, map to an existing uid on the host if needed \pause
+- Give only the privileges you really need \pause
   - [Docker documentation](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities)
 ```bash
 docker run -d --cap-drop CHOWN alpine
-```
+``` \pause
 - Using **tmpfs** for sensitive data which shouldn't be saved outside of the container
 ```bash
---tmpfs /tmp/${CONTAINER_NAME}:uid=1000,gid=1000
+docker run ... \
+--tmpfs /tmp/${CONTAINER_NAME}:uid=1000,gid=1000 \
+  ...
 ```
 
 ---
 
+\section{Building images}
+
 # Docker build - How to build smaller images
 
-- Use multistage builds
-- Use build cache (copy package.json and yarn.lock in an extra step before yarn install)
+- Use multistage builds \pause
+- Use build cache (copy package.json and yarn.lock in an extra step before yarn install) \pause
 - Remove dev node_modules before copy
 
 ---
 
-\section{Maintaining - Cleanup up your Docker with prune}
+\section{Maintaining}
 
 ---
 
@@ -86,7 +92,7 @@ This might will not work as expected
 ```bash
 docker logs {container} 2>&1 | grep {term} | less
 ```
-The reason why it's not working in the way you would expect is, that docker is not logging always to stdout. Instead it's logging the stderror. So you have to redirect stderror to stdout before your can pipe it to grep.
+This can happen if the container is logging to **stderr**. Piping works only for **stdout**. So you have to redirect **stderror** to **stdout** before your can pipe it to grep.
 
 # Take care about the size of your Docker log files
 
@@ -117,8 +123,6 @@ To delete all log files, you can use the following command
 find /var/lib/docker/containers/
     -type f -name "*.log" -delete
 ```
-
-# Configuring extra host names or DNS
 
 \section{More tips - Using a UI in the browser or terminal}
 

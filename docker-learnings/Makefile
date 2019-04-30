@@ -39,7 +39,7 @@ view:
 	evince $(TARGET).pdf &
 
 present:
-	pdfpc --duration=25 --last-minutes=5 $(TARGET).pdf
+	pdfpc --duration=45 --last-minutes=5 $(TARGET).pdf
 	[[ -r $(TARGET).pdfpc ]] && rm $(TARGET).pdfpc
 
 clean:
