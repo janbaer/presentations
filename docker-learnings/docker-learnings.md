@@ -42,9 +42,12 @@ This talk is not about Kubernetes or Docker Swarm
   - Take care about **uid**, map to an existing uid on the host if needed \pause
 - Give only the privileges you really need \pause
   - [Docker documentation](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities)
+
 ```bash
 docker run -d --cap-drop CHOWN alpine
-``` \pause
+```
+\pause
+
 - Using **tmpfs** for sensitive data which shouldn't be saved outside of the container
 ```bash
 docker run ... \
@@ -56,11 +59,11 @@ docker run ... \
 
 \section{Building images}
 
-# Docker build - How to build smaller images
+# How to build smaller images
 
 - Use multistage builds \pause
 - Use build cache (copy package.json and yarn.lock in an extra step before yarn install) \pause
-- Remove dev node_modules before copy
+- Remove deveveloper node_modules before copy
 
 ---
 
@@ -89,15 +92,19 @@ This might will not work as expected
 
 \pause
 
+This can happen if the container is logging to **stderr**. Piping works only for **stdout**. So you have to redirect **stderror** to **stdout** before your can pipe it to grep.
+
+\pause
+
 ```bash
 docker logs {container} 2>&1 | grep {term} | less
 ```
-This can happen if the container is logging to **stderr**. Piping works only for **stdout**. So you have to redirect **stderror** to **stdout** before your can pipe it to grep.
 
 # Take care about the size of your Docker log files
 
 - When using JSON File logging driver (which is the default)
   - Using **/etc/docker/daemon.json**
+
 ```json
 {
   "log-driver": "json-file",
@@ -107,11 +114,15 @@ This can happen if the container is logging to **stderr**. Piping works only for
   }
 }
 ```
+
+# Take care about the size of your Docker log files
+
   - Or using commandline option
+
 ```bash
 docker run --rm -it --log-opt max-size=10m alpine
 ```
-  - [See also](https://docs.docker.com/config/containers/logging/json-file/)
+  - [docs.docker.com](https://docs.docker.com/config/containers/logging/json-file/)
 
 ---
 
@@ -123,6 +134,8 @@ To delete all log files, you can use the following command
 find /var/lib/docker/containers/
     -type f -name "*.log" -delete
 ```
+
+---
 
 \section{More tips - Using a UI in the browser or terminal}
 
@@ -152,6 +165,11 @@ alias sen="docker run --rm --name=sen
 - [github ctop](https://github.com/bcicen/ctop)
 
 ![](images/ctop.png){width=10cm}
+
+
+---
+
+\section{Last tipp}
 
 # You won't need to be sudo always
 
