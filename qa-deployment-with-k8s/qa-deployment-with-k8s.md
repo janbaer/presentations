@@ -1,7 +1,7 @@
 ---
 title: QA-Deployment with K8S
-subtitle: How to deploy multiple QA environments with the help of K8S
-author: Jan Baer
+subtitle: How to deploy multiple QA environments with the help of K8s (K3s)
+author: Jan Baer, LeadDeveloper, CHECK24
 institute: 
 lang: de
 date: \today
@@ -25,14 +25,21 @@ header-includes:
 
 ---
 
+# {.standout}
+
+Thank you to David Molnar (Ideas and hints)
+and Imo Klabun (Providing K8s cluster while developing v1)
+
 # What we had before
 
 - 3 independent QA environments
 - 3 cloned Bamboo plans for deploymnent
-- 3 configuration files with fixed host-urls
+- 3 configuration files with fixed host-urls (qa1, qa2, qa3)
 - Docker-compose with 68 containers running inside on each host
+- haproxy for routing (no loadbalancing)
 - Very difficult to add more QA environments
 - Hard to investigate when a feature was not deployed correctly
+- Docker images tagged with **verbu-12345_latest**
 
 ---
 
@@ -40,16 +47,31 @@ header-includes:
 
 ---
 
-# What we wanted to reach
+# What's on our wishlist
 
 - At least 6 parallel QA environments
-- Easier scalable
-- Only one config for QA
+- Easier scalable if necessary
+- Only one config for all QA environments
 - Better management and error investigation
 
 ---
 
 ![](images/qa-new.png){width=9cm}
+
+# What comes from us
+
+- Cockpit - provides a lot of functionalities for our daily workflows with Testing and Deployment
+- QA-K8S-Service - Micro-Service with endpoints for creating, updating, and deleting qa-deployments
+
+# What external services we're using
+
+- Nexus Docker Registry
+- Rancher
+- K3s
+
+# How is it working together
+
+![](images/server-architecture.png){width=8cm}
 
 ---
 
@@ -120,9 +142,14 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
 
 ![](images/k3s_bu_cluster.png){width=11cm}
 
-# How is it working together
+# What's is the role of Rancher
 
-![](images/server-architecture.png){width=8cm}
+- Makes the access to the cluster easier. (UserManagement, AccessToken)
+- Provides additional REST endpoints for creating namespace and querying workloads
+- Can configure monitoring with Prometheus and Grafana
+- Works fine together with K3s because it's from the same company
+- Easy version upgrades for the K3s cluster with the system-upgrade-controller
+- Easier access to container logs and analyzing deployment problems
 
 # What problems we had to solve
 
@@ -131,10 +158,11 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
 - Waiting for depending services (NSQ)
 - Find the right limits
 - Rewriting urls
+- Updating deployments
 
 # Dynamic creation of urls
 
-Use placeholders in config files
+Use placeholders in config files, processing with bu.config npm module when Node.js server starts
 
 ![](images/qa-config.png){width=7cm}
 
@@ -146,41 +174,54 @@ Set feature as environment variable
 
 - First deployment takes a while because it requires to deploy ~70 Pods
 - Only update what has changed
+
 ![](images/feature-updating.png){width=7cm}
-- No graceful shutdown reduces deletion time
+
+- No graceful shutdown reduces deletion time (not recommended for Production)
+
 ![](images/termination-grace-period.png){width=7cm}
 
 # Waiting for dependent services
 
 - Some of the services requiring a running NSQ service
 
-![](images/init-container.png){width=7cm}
+![](images/init-containers.png){width=8cm}
 
 ![](images/wait-for-nsq.png){width=10cm}
 
 # Finding the right limits
 
-- Observe a deployment to know what resources are required
+- Observe a deployment to learn what resources are required
 
 ![](images/watch-resources.png){width=7cm}
 
-![](images/feature-resources.png){width=9cm}
+![](images/feature-resources.png){width=10cm}
 
-# Some urls has to be changed
+# Rewriting of urls
 
 - Remove `/eventbus` from the url before forwarding to NSQ service
 
-![](images/rewrite-path.png){width=9cm}
+![](images/rewrite-path.png){width=8cm}
 
-# Next steps
+# Updating deployments
 
-- One MongoDb per feature deployment
-- Improve visualisation of the deployment state
+- How updating deployments when Docker image tags won't be changed
+- Use an artificial deployment-id that will be changed for each deployment
+
+![](images/deployment-metadata.png){width=8cm}
 
 # Which problems we still have
 
-- Too many pods for every feature deployment
+- Too many pods for every feature deployment (6 x 70)
 - Deployment becomes unstable after the 6th deployment and it's unclear why
+
+# Next steps
+
+- Improve visualization of the deployment state
+- Automatic cleanup when ticket is released
+- Detecting when no further deployments are possible
+- One MongoDb per feature deployment
+- Show Dockerlogs from Cockpit to investigate problems
 
 # {.standout}
 
