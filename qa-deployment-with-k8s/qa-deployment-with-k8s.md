@@ -25,18 +25,23 @@ header-includes:
 
 ---
 
-# {.standout}
+# BU-Product overview
 
-Thank you to David Molnar (Ideas and hints)
-and Imo Klabun (Providing K8s cluster while developing v1)
+- Comparison for insurances - 2 different products, separate desktop and mobile apps
+- Backoffice apps
+- Administration apps
+- Node.js, Next.js, Docker
+- 5 Developers, 2 QA-Engineers, 3 Productmanagers
+
+![](images/bu-productpage.png){width=8cm}
 
 # What we had before
 
-- 3 independent QA environments
-- 3 cloned Bamboo plans for deploymnent
-- 3 configuration files with fixed host-urls (qa1, qa2, qa3)
-- Docker-compose with 68 containers running inside on each host
-- haproxy for routing (no loadbalancing)
+- 3 QA environments
+- 3 cloned Bamboo plans for deployment
+- 3 configuration files for each project with fixed host-urls (qa1, qa2, qa3)
+- Docker-compose with 68 running containers on each host machine
+- HAProxy for routing (no loadbalancing)
 - Very difficult to add more QA environments
 - Hard to investigate when a feature was not deployed correctly
 - Docker images tagged with **verbu-12345_latest**
@@ -47,7 +52,7 @@ and Imo Klabun (Providing K8s cluster while developing v1)
 
 ---
 
-# What's on our wishlist
+# What was on our wishlist
 
 - At least 6 parallel QA environments
 - Easier scalable if necessary
@@ -66,12 +71,21 @@ and Imo Klabun (Providing K8s cluster while developing v1)
 # What external services we're using
 
 - Nexus Docker Registry
-- Rancher
-- K3s
+- Rancher - Kubernetes Management Platform
+- K3s - Lightweight Kubernetes Distribution
 
 # How is it working together
 
 ![](images/server-architecture.png){width=8cm}
+
+---
+
+# How to talk with Kubernetes
+
+- Using officially-supported Kubernetes client libraries - [Link](https://kubernetes.io/docs/reference/using-api/client-libraries/)
+- Using REST api directly - [Link](https://kubernetes.io/docs/reference/using-api/api-overview/)
+  - Tip: run `kubectl ... -v 8` to see the rest requests for each command
+- Using Rancher api for extended features - [Link](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/projects-and-namespaces/)
 
 ---
 
