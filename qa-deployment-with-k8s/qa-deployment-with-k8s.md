@@ -1,8 +1,8 @@
 ---
 title: QA-Deployment with K8S
 subtitle: How to deploy multiple QA environments with the help of K8s (K3s)
-author: Jan Baer, LeadDeveloper, CHECK24
-institute: 
+author: Jan Baer, LeadDeveloper
+institute: CHECK24 
 lang: de
 date: \today
 
@@ -27,11 +27,11 @@ header-includes:
 
 # BU-Product overview
 
-- Comparison for insurances - 2 different products, separate desktop and mobile apps
+- Comparison for disability insurances - 2 different products, separate desktop and mobile apps
 - Backoffice apps
 - Administration apps
-- Node.js, Next.js, Docker
-- 5 Developers, 2 QA-Engineers, 3 Productmanagers
+- Node.js, Next.js, Docker (But not K8s)
+- 6 Developers, 2 QA-Engineers, 4 Productmanagers
 
 ![](images/bu-productpage.png){width=8cm}
 
@@ -42,13 +42,15 @@ header-includes:
 - 3 configuration files for each project with fixed host-urls (qa1, qa2, qa3)
 - Docker-compose with 68 running containers on each host machine
 - HAProxy for routing (no loadbalancing)
-- Very difficult to add more QA environments
+- Very difficult to add more QA environments (new VM, build-plan etc.)
 - Hard to investigate when a feature was not deployed correctly
 - Docker images tagged with **verbu-12345_latest**
 
 ---
 
-![](images/qa-old.png){width=8cm}
+# How the UI was looking
+
+![](images/qa-old.png){width=7cm, height=7cm}
 
 ---
 
@@ -58,21 +60,31 @@ header-includes:
 - Easier scalable if necessary
 - Only one config for all QA environments
 - Better management and error investigation
+- Stable URLs per feature-deployment
+
+# {.standout}
+
+How about using Kubernetes (K8s)
+
+# What features from Kubernetes could help us
+
+- Isolation between parallel deployments with using namespaces
+- Dynamic generation of Urls with Ingress controller
+- Restful API for deploying from external service
+- Scalable cluster architecture
 
 ---
-
-![](images/qa-new.png){width=9cm}
 
 # What comes from us
 
 - Cockpit - provides a lot of functionalities for our daily workflows with Testing and Deployment
 - QA-K8S-Service - Micro-Service with endpoints for creating, updating, and deleting qa-deployments
 
-# What external services we're using
+# What external parts we're using
 
 - Nexus Docker Registry
-- Rancher - Kubernetes Management Platform
 - K3s - Lightweight Kubernetes Distribution
+- Rancher - Kubernetes Management Platform
 
 # How is it working together
 
@@ -80,14 +92,100 @@ header-includes:
 
 ---
 
-# How to talk with Kubernetes
+# How we communicate with Kubernetes
 
 - Using officially-supported Kubernetes client libraries - [Link](https://kubernetes.io/docs/reference/using-api/client-libraries/)
 - Using REST api directly - [Link](https://kubernetes.io/docs/reference/using-api/api-overview/)
   - Tip: run `kubectl ... -v 8` to see the rest requests for each command
 - Using Rancher api for extended features - [Link](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/projects-and-namespaces/)
 
+# How services and apps are communicating with each other
+
+![](images/communication-qa.png){width=10cm}
+
+# How to deploy services and apps to QA (v1)
+
+![](images/communication-namespaces-v1.png){width=10cm}
+
 ---
+
+# What problems we had to solve
+
+- Dynamic creation of urls
+- Waiting for depending services (NSQ)
+- Find the right limits
+- Rewriting urls
+- Updating deployments
+
+# Dynamic creation of urls
+
+Set feature as environment variable
+
+![](images/environment-variables.png){width=7cm}
+
+- Use placeholders in config files
+- Replace placeholder with feature env when service is starting
+
+![](images/qa-config.png){width=7cm}
+
+# Waiting for dependent services
+
+- Some of the services require a running NSQ service
+
+![](images/init-containers.png){width=8cm}
+
+![](images/wait-for-nsq.png){width=10cm}
+
+# Finding the right limits
+
+- Observe a deployment to learn what resources are required
+
+![](images/watch-resources.png){width=7cm}
+
+![](images/feature-resources.png){width=10cm}
+
+# Rewriting of urls
+
+- Remove `/eventbus` from the url before forwarding to NSQ service
+
+![](images/rewrite-path.png){width=8cm}
+
+# Mission completed?
+
+![](images/qa-new.png){width=7cm}
+
+- Now we could deploy 5 parallel deployments (the 6th became instable)
+- But each deployment requires ~70 PODs to deploy
+- Creation but also deletion was slow
+- Updating was faster but manual trigger required
+
+# {.standout}
+
+How about using a ServiceMesh, like Istio?
+
+# How to deploy services and apps to QA (v2)
+
+![](images/communication-namespaces-v2.png){width=10cm}
+
+# How is it looking now?
+
+![](images/qa-deployment-v2.png){width=8cm}
+
+# What is running internally
+
+![](images/qa-k8s-feature-proxy.png){width=8cm}
+
+# How is it improving the deployment?
+
+- Much faster deployment because of deploying only a few services and apps
+- Faster cleanup of existing deployments
+- Using much less resources per deployment
+- More parallel deployments are possible
+- Bonus: Automatic updating of deployments from Bamboo
+
+# {.standout}
+
+Questions?
 
 # What is K3s?
 
@@ -159,83 +257,11 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
 # What's is the role of Rancher
 
 - Makes the access to the cluster easier. (UserManagement, AccessToken)
-- Provides additional REST endpoints for creating namespace and querying workloads
+- Provides additional REST endpoints for creating namespaces and querying workloads
 - Can configure monitoring with Prometheus and Grafana
 - Works fine together with K3s because it's from the same company
 - Easy version upgrades for the K3s cluster with the system-upgrade-controller
 - Easier access to container logs and analyzing deployment problems
-
-# What problems we had to solve
-
-- Dynamic creation of urls
-- Improve first-deployment and update and cleanup times
-- Waiting for depending services (NSQ)
-- Find the right limits
-- Rewriting urls
-- Updating deployments
-
-# Dynamic creation of urls
-
-Use placeholders in config files, processing with bu.config npm module when Node.js server starts
-
-![](images/qa-config.png){width=7cm}
-
-Set feature as environment variable
-
-![](images/environment-variables.png){width=7cm}
-
-# Improve deployment times
-
-- First deployment takes a while because it requires to deploy ~70 Pods
-- Only update what has changed
-
-![](images/feature-updating.png){width=7cm}
-
-- No graceful shutdown reduces deletion time (not recommended for Production)
-
-![](images/termination-grace-period.png){width=7cm}
-
-# Waiting for dependent services
-
-- Some of the services requiring a running NSQ service
-
-![](images/init-containers.png){width=8cm}
-
-![](images/wait-for-nsq.png){width=10cm}
-
-# Finding the right limits
-
-- Observe a deployment to learn what resources are required
-
-![](images/watch-resources.png){width=7cm}
-
-![](images/feature-resources.png){width=10cm}
-
-# Rewriting of urls
-
-- Remove `/eventbus` from the url before forwarding to NSQ service
-
-![](images/rewrite-path.png){width=8cm}
-
-# Updating deployments
-
-- How updating deployments when Docker image tags won't be changed
-- Use an artificial deployment-id that will be changed for each deployment
-
-![](images/deployment-metadata.png){width=8cm}
-
-# Which problems we still have
-
-- Too many pods for every feature deployment (6 x 70)
-- Deployment becomes unstable after the 6th deployment and it's unclear why
-
-# Next steps
-
-- Improve visualization of the deployment state
-- Automatic cleanup when ticket is released
-- Detecting when no further deployments are possible
-- One MongoDb per feature deployment
-- Show Dockerlogs from Cockpit to investigate problems
 
 # {.standout}
 
@@ -244,9 +270,3 @@ Questions?
 # {.standout}
 
 Thank you!
-
-
-
-
-
-
