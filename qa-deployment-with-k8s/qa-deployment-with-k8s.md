@@ -30,7 +30,7 @@ header-includes:
 - Comparison for disability insurances - 2 different products, separate desktop and mobile apps
 - Backoffice apps
 - Administration apps
-- Node.js, Next.js, Docker (But not K8s)
+- Node.js, Next.js, Docker, Docker-compose
 - 6 Developers, 2 QA-Engineers, 4 Productmanagers
 
 ![](images/bu-productpage.png){width=8cm}
@@ -56,11 +56,16 @@ header-includes:
 
 # What was on our wishlist
 
-- At least 6 parallel QA environments
+- At least double the QA environments
 - Easier scalable if necessary
 - Only one config for all QA environments
 - Better management and error investigation
 - Stable URLs per feature-deployment
+
+# What options we had to improve that
+
+- Create more VMs and setting up new Bamboo plans
+- Improving speed for creation of VMs with using a more automated way for bootstrap (Terraform)
 
 # {.standout}
 
@@ -78,9 +83,9 @@ How about using Kubernetes (K8s)
 # What comes from us
 
 - Cockpit - provides a lot of functionalities for our daily workflows with Testing and Deployment
-- QA-K8S-Service - Micro-Service with endpoints for creating, updating, and deleting qa-deployments
+- QA-K8S-Service - MicroService with endpoints for creating, updating, and deleting qa-deployments
 
-# What external parts we're using
+# What external components we use
 
 - Nexus Docker Registry
 - K3s - Lightweight Kubernetes Distribution
@@ -92,12 +97,11 @@ How about using Kubernetes (K8s)
 
 ---
 
-# How we communicate with Kubernetes
+# How to communicate with Kubernetes
 
 - Using officially-supported Kubernetes client libraries - [Link](https://kubernetes.io/docs/reference/using-api/client-libraries/)
 - Using REST api directly - [Link](https://kubernetes.io/docs/reference/using-api/api-overview/)
   - Tip: run `kubectl ... -v 8` to see the rest requests for each command
-- Using Rancher api for extended features - [Link](https://rancher.com/docs/rancher/v2.x/en/cluster-admin/projects-and-namespaces/)
 
 # How services and apps are communicating with each other
 
@@ -111,11 +115,18 @@ How about using Kubernetes (K8s)
 
 # What problems we had to solve
 
+- How to authorize to talk with Kubernetes
 - Dynamic creation of urls
 - Waiting for depending services (NSQ)
 - Find the right limits
 - Rewriting urls
 - Updating deployments
+
+# How to authorize to talk with Kubernetes
+
+- Create service-account for **qa-deploy**
+- Assign role to be able to create or delete namespaces and deploy PODs (RBAC)
+- How to talk with Kubernetes over *https* (use server_ca.crt)
 
 # Dynamic creation of urls
 
@@ -182,10 +193,6 @@ How about using a ServiceMesh, like Istio?
 - Using much less resources per deployment
 - More parallel deployments are possible
 - Bonus: Automatic updating of deployments from Bamboo
-
-# {.standout}
-
-Questions?
 
 # What is K3s?
 
@@ -256,8 +263,7 @@ K3s is a fully compliant Kubernetes distribution with the following enhancements
 
 # What's is the role of Rancher
 
-- Makes the access to the cluster easier. (UserManagement, AccessToken)
-- Provides additional REST endpoints for creating namespaces and querying workloads
+- Makes the access to the cluster easier. (UserManagement)
 - Can configure monitoring with Prometheus and Grafana
 - Works fine together with K3s because it's from the same company
 - Easy version upgrades for the K3s cluster with the system-upgrade-controller
