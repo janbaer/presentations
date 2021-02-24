@@ -1,6 +1,6 @@
 ---
-title: QA-Deployment with K8S
-subtitle: How to deploy multiple QA environments with the help of K8s (K3s)
+title: QA-Deployment with Kubernetes
+subtitle: How to deploy multiple QA environments with the help of K8s
 author: Jan Baer, LeadDeveloper
 institute: CHECK24 
 lang: de
@@ -37,14 +37,13 @@ header-includes:
 
 # What we had before
 
-- 3 QA environments
+- 3 QA environments on 3 VMs
 - 3 cloned Bamboo plans for deployment
 - 3 configuration files for each project with fixed host-urls (qa1, qa2, qa3)
-- Docker-compose with 68 running containers on each host machine
+- Docker-compose with 68 running containers on each host machine (In the meantime we have 74)
 - HAProxy for routing (no loadbalancing)
 - Very difficult to add more QA environments (new VM, build-plan etc.)
 - Hard to investigate when a feature was not deployed correctly
-- Docker images tagged with **verbu-12345_latest**
 
 ---
 
@@ -66,10 +65,11 @@ header-includes:
 
 - Create more VMs and setting up new Bamboo plans
 - Improving speed for creation of VMs with using a more automated way for bootstrap (Terraform)
+- Reduce number of containers to deploy with building groups to test
 
 # {.standout}
 
-How about using Kubernetes (K8s)
+How about using Kubernetes
 
 # What features from Kubernetes could help us
 
@@ -83,13 +83,13 @@ How about using Kubernetes (K8s)
 # What comes from us
 
 - Cockpit - provides a lot of functionalities for our daily workflows with Testing and Deployment
-- QA-K8S-Service - MicroService with endpoints for creating, updating, and deleting qa-deployments
+- QA-K8S-Service - Microservice with endpoints for creating, updating, and deleting qa-deployments
 
 # What external components we use
 
 - Nexus Docker Registry
 - K3s - Lightweight Kubernetes Distribution
-- Rancher - Kubernetes Management Platform
+- Rancher - Kubernetes management platform
 
 # How is it working together
 
