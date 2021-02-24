@@ -28,4 +28,8 @@ present:
 	pdfpc --duration=$(DURATION) --last-minutes=5 ./${TARGET}/$(TARGET).pdf
 	[[ -r ./$(TARGET)/$(TARGET).pdfpc ]] && rm ./$(TARGET)/$(TARGET).pdfpc
 
-.PHONY: build view touch present
+present-both:
+	pdfpc -w both --duration=$(DURATION) --last-minutes=5 ./${TARGET}/$(TARGET).pdf
+	[[ -r ./$(TARGET)/$(TARGET).pdfpc ]] && rm ./$(TARGET)/$(TARGET).pdfpc
+
+.PHONY: build view touch present present-both
