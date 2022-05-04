@@ -15,7 +15,8 @@ To create a new presentation just create a new folder and a Markdown file with t
 You can use the following commands:
 
 - `make TARGET={foldername}` - To build the presentation
-- `make view TARGET={foldername}` - To view the presenation with a pdf-viewer
+- `make view TARGET={foldername}` - To view the presentation with a pdf-viewer
+- `make watch TARGET={foldername}` - To watch for any changes in the current Markdown file and rebuild
 - `make present TARGET={foldername}` - To start the presentation in a presentation mode with using **pdfpc**
 
 ## Presentation mode - keys
@@ -24,4 +25,10 @@ You can use the following commands:
 - P - opens the presenter view to show notes on the primary view
 
 [https://github.com/gnab/remark/wiki/Markdown]
+
+Install watchexec with
+
+```
+curl -sS https://webinstall.dev/watchexec | bash
+```
 

@@ -21,6 +21,9 @@ endif
 touch:
 	touch `pwd`/$(TARGET)/*.md
 
+watch:
+	watchexec --exts md make build TARGET=$(TARGET)
+
 view:
 	evince ./$(TARGET)/$(TARGET).pdf &
 
