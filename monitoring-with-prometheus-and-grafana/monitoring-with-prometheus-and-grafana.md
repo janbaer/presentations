@@ -65,7 +65,6 @@ header-includes:
 - [cAdvisor](https://github.com/google/cadvisor)
 - blackbox-exporter
 - haproxy-exporter
-- [Write you own exporters](https://bitbucket.check24.de/projects/BU/repos/omega/browse/sources/modules/metrics/metrics.module.js)
 
 # Alertmanager
 
