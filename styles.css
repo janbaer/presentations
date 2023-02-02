@@ -107,3 +107,13 @@ code {
   float: right;
   padding-top: 1em;
 }
+
+.rust-logo {
+  height: 300px;
+  position: absolute;
+  transform: rotate(30deg);
+  opacity: 0.3;
+  top: 20px;
+  left: calc(100% - 300px);
+}
+
