@@ -51,7 +51,7 @@ Rust is a **systems programming** language focused on three goals: **safety, spe
 
 # What Rust can be used for
 
-- OS
+- OS - [Rust-for-Linux](https://github.com/Rust-for-Linux/linux)
 - Device drivers
 - Filesystems
 - Databases
@@ -63,6 +63,8 @@ Rust is a **systems programming** language focused on three goals: **safety, spe
 - Webservices
 
 [Rust in Production](https://www.rust-lang.org/production)
+
+[How do you use Rust?](https://www.jetbrains.com/lp/devecosystem-2021/rust/#:~:text=Rust%20is%20mostly%20used%20for,and%20Web%20Development%20(33%25).)
 
 ---
 
@@ -113,6 +115,7 @@ It can manage your dependencies, build your binaries, run tests, benchmark the p
 - ...
 - watch
 
+---
 
 # How to install rust
 
@@ -123,6 +126,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 [Rust install](https://www.rust-lang.org/tools/install)
 
 Uninstall Rust: `rustup self uninstall` (But really?)
+
+In your editor or IDE install **rust-analyzer** plugin
 
 ---
 
@@ -150,6 +155,12 @@ Unit-Tests are in the same file as the code that should be tested.
 
 ---
 
+# {.standout}
+
+How to build a binary for another platform with Cargo
+
+cargo build --target x86_64-pc-windows-gnu
+
 # Memory safety
 
 - Rust provides memory safety without garbage collection
@@ -169,23 +180,23 @@ Unit-Tests are in the same file as the code that should be tested.
 - Central to the memory safety features of Rust
 - Allow Rust to not do garbage collection
 - Prevents data races
-- More than one concurrent access to an object
-- One access is a write
-- The accesses are not synchronized
 - Ownership and borrow rules checked at compile time
 
 ---
 
-# Ownership
+# Ownership - Rules
 
 - Every value is owned by a variable
 - There is only a single owner at each time
 - When the owner goes out of scope, the value is dropped
 - Ownership can be transferred to other variables
 
+[Rust by example](https://doc.rust-lang.org/rust-by-example/scope/move.html)
+
+
 ---
 
-# Borrowing
+# Borrowing - Rules
 
 - You have a single mutable borrow of a value or...
 - You have one or more immutable borrows of a value
@@ -226,6 +237,8 @@ impl Person {
 ---
 
 # Structs
+
+A struct, or structure, is a custom data type that lets you package together and name multiple related values that make up a meaningful group.
 
 ```
 fn main() {
@@ -327,6 +340,18 @@ pub enum Option<T> {
 ```
 ---
 
+# How to prevent returning Null
+
+```
+  fn search_user(string: name) -> Option<User> {
+      if ...user was found... {
+        Some(user)   
+      }
+      None
+  }
+```
+---
+
 # Error handling with pattern matching
 
 ```
@@ -363,23 +388,11 @@ let vec_plus_1: Vec<_> = v.iter().map(|x| x + 1).collect();
 println!("{:?}", vec_plus_1);
 
 ```
+# The Rust ecosystem
 
----
+[crates.io](https://crates.io/)
 
-# How to prevent returning Null
-
-```
-  fn search_user(string: name) -> Option<User> {
-      if ...user was found... {
-        Some(user)   
-      }
-
-      None
-  }
-
-```
-
-
+![](images/crates-io-2.jpg){width=50%}
 
 ---
 
@@ -388,14 +401,6 @@ println!("{:?}", vec_plus_1);
 - [The Rust Programming Language](https://doc.rust-lang.org/book/)
 - [The Cargo Book](https://doc.rust-lang.org/cargo/index.html)
 - [Rust by Example](https://doc.rust-lang.org/stable/rust-by-example/index.html)
+- [The Rust standard library](https://doc.rust-lang.org/std/#the-rust-standard-library)
 - [The rustc book](https://doc.rust-lang.org/rustc/index.html)
 - [More books](https://www.rust-lang.org/learn)
-
----
-
-# The Rust ecosystem
-
-[crates.io](https://crates.io/)
-
-![](images/crates-io-2.jpg){width=50%}
-
